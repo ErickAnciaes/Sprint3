@@ -1,4 +1,3 @@
-// src/App.jsx
 
 import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
@@ -8,7 +7,6 @@ import Feed from './pages/Feed';
 import Perfil from './pages/Perfil';
 import { carregarSessao } from './utils/api';
 
-// Componente para proteção de rotas
 const RotaProtegida = ({ children }) => {
   const navigate = useNavigate();
   useEffect(() => {
@@ -37,7 +35,7 @@ export default function App() {
             <Perfil />
           </RotaProtegida>
         } />
-        <Route path="*" element={<Login />} /> {/* Redireciona para login se a rota não for encontrada */}
+        <Route path="*" element={<Login />} /> 
       </Routes>
     </BrowserRouter>
   );

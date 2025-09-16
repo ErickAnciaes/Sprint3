@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom"
 import { carregarContas, removerSessao, carregarSessao } from "../utils/api"
 import FeedCard from "../components/FeedCard"
 
-// Dados de exemplo (mantive aqui para facilitar)
 const feedExemplo = [
   {
     username: "Maria Silva",

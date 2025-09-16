@@ -1,8 +1,8 @@
-"use client"
+"use client" // Se você está usando Next.js App Router, mantenha esta linha. Caso contrário, pode remover.
 
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { carregarSessao, salvarContas, carregarContas, salvarSessao } from "../utils/api" // Adicionado salvarSessao para o caso de atualizar o próprio perfil
+import { carregarSessao, salvarContas, carregarContas, salvarSessao } from "../utils/api"
 import Header from "../components/Header"
 
 const FOTO_PADRAO = "/assets/usuario sem foto.jpg"
@@ -15,97 +15,120 @@ export default function Perfil() {
   const navigate = useNavigate()
 
   useEffect(() => {
-  const usuarioLogado = carregarSessao()
-  if (!usuarioLogado) {
-    alert("Você precisa estar logado para acessar o perfil!")
-    navigate("/login")
-    return
-  }
-  const perfilSelecionadoString = sessionStorage.getItem("perfilSelecionado")
-  if (perfilSelecionadoString) {
-    try {
-      const perfilSelecionado = JSON.parse(perfilSelecionadoString)
-      setPerfil(perfilSelecionado)
-      const owner = perfilSelecionado.email === usuarioLogado.email
-      setIsOwner(owner)
-      setFormData(owner ? { ...perfilSelecionado } : {})
-      sessionStorage.removeItem("perfilSelecionado")
-    } catch {
-      setPerfil(usuarioLogado)
-      setIsOwner(true)
-      setFormData({ ...usuarioLogado })
+    console.log("Perfil useEffect: Iniciando carregamento de perfil.");
+    const usuarioLogado = carregarSessao();
+
+    if (!usuarioLogado) {
+      alert("Você precisa estar logado para acessar o perfil!");
+      navigate("/login");
+      return;
     }
-  } else {
-    setPerfil(usuarioLogado)
-    setIsOwner(true)
-    setFormData({ ...usuarioLogado })
-  }
-}, [navigate])
- // Removed perfil from dependencies to prevent re-execution
+
+    const perfilSelecionadoString = sessionStorage.getItem("perfilSelecionado");
+    let perfilParaExibir = null;
+
+    if (perfilSelecionadoString) {
+      try {
+        perfilParaExibir = JSON.parse(perfilSelecionadoString);
+        sessionStorage.removeItem("perfilSelecionado"); 
+        console.log("Perfil useEffect: Perfil carregado do sessionStorage (Feed):", perfilParaExibir.username);
+      } catch (e) {
+        console.error("Perfil useEffect: Erro ao parsear perfil selecionado da sessionStorage:", e);
+
+        perfilParaExibir = usuarioLogado;
+      }
+    } else {
+      perfilParaExibir = usuarioLogado;
+      console.log("Perfil useEffect: Nenhum perfil selecionado, exibindo perfil do usuário logado:", perfilParaExibir.username);
+    }
+    
+
+    setPerfil(perfilParaExibir);
+
+    const ehDono = perfilParaExibir.email === usuarioLogado.email;
+    setIsOwner(ehDono);
+    console.log("Perfil useEffect: É o dono do perfil?", ehDono);
+
+    setFormData(ehDono ? { ...perfilParaExibir } : {}); 
+    
+
+    setModoEdicao(false);
+
+  }, [navigate]);
 
   useEffect(() => {
-    console.log("Estado atual do Perfil:", perfil)
-    console.log("Estado atual do formData:", formData)
-  }, [perfil, formData])
+    console.log("Estado atual do Perfil (render):", perfil);
+    console.log("Estado atual do formData (render):", formData);
+    console.log("Estado atual do isOwner (render):", isOwner);
+    console.log("Estado atual do modoEdicao (render):", modoEdicao);
+  }, [perfil, formData, isOwner, modoEdicao]);
 
   const entrarEdicao = () => {
-    if (!isOwner) return
-    console.log("[v0] Entrando no modo de edição")
-    setModoEdicao(true)
-    setFormData({ ...perfil })
-  }
+    if (!isOwner) return;
+    console.log("[Perfil] Entrando no modo de edição.");
+    setModoEdicao(true);
+    setFormData({ ...perfil }); 
+  };
 
   const handleChange = (e) => {
-    const { id, value } = e.target
-    console.log(`Alterando campo ${id}: ${value}`)
-    setFormData((prevFormData) => ({ ...prevFormData, [id]: value }))
-  }
+    const { id, value } = e.target;
+    console.log(`[Perfil] Alterando campo ${id}: ${value}`);
+    setFormData((prevFormData) => ({ ...prevFormData, [id]: value }));
+  };
 
   const salvarEdicao = () => {
-    if (!isOwner) return
+    if (!isOwner) return;
 
-    console.log("[v0] Tentando salvar edição:", formData)
+    console.log("[Perfil] Tentando salvar edição. FormData:", formData);
 
     if (!formData.username || !formData.email || !formData.idade || !formData.posicao || !formData.cidade) {
-      alert("Por favor, preencha todos os campos!")
-      return
+      alert("Por favor, preencha todos os campos!");
+      console.log("[Perfil] Erro: Campos incompletos.");
+      return;
     }
 
-    const contas = carregarContas()
-    const usuarioLogado = carregarSessao()
+    const contas = carregarContas();
+    const usuarioLogado = carregarSessao(); 
 
-    const indice = contas.findIndex((c) => c.email === usuarioLogado?.email)
+    const indice = contas.findIndex((c) => c.email === usuarioLogado?.email);
 
     if (indice !== -1) {
-      const emailJaExiste = contas.some((c, i) => c.email === formData.email && i !== indice)
+      const emailJaExiste = contas.some((c, i) => c.email === formData.email && i !== indice);
 
       if (emailJaExiste) {
-        alert("Este email já está em uso por outro usuário!")
-        return
+        alert("Este email já está em uso por outro usuário!");
+        console.log("[Perfil] Erro: Email já existente.");
+        return;
       }
 
-      const novaLista = [...contas]
-      novaLista[indice] = formData
-      salvarContas(novaLista)
-      salvarSessao(formData)
+      const novaLista = [...contas];
+      novaLista[indice] = formData;
+      salvarContas(novaLista); 
+      salvarSessao(formData); 
 
-      console.log("[v0] Perfil atualizado:", formData)
+      console.log("[Perfil] Perfil atualizado no localStorage e sessionStorage:", formData);
+    } else {
+      console.log("[Perfil] Erro: Perfil do usuário logado não encontrado na lista de contas para atualizar.");
+      alert("Erro ao encontrar seu perfil para atualização.");
+      return;
     }
 
-    setPerfil(formData)
-    setModoEdicao(false)
-    alert("Perfil atualizado com sucesso!")
-  }
+    setPerfil(formData);
+    setModoEdicao(false);
+    alert("Perfil atualizado com sucesso!");
+  };
 
   const cancelarEdicao = () => {
-    console.log("[v0] Cancelando edição")
-    setModoEdicao(false)
-    setFormData({ ...perfil })
-  }
+    console.log("[Perfil] Cancelando edição.");
+    setModoEdicao(false);
+    setFormData({ ...perfil }); 
+    alert("Edição cancelada.");
+  };
 
   if (!perfil) {
-    return <div className="text-center mt-20 text-gray-600">Carregando perfil...</div>
+    return <div className="text-center mt-20 text-gray-600">Carregando perfil...</div>;
   }
+
 
   return (
     <div className="container mx-auto p-4 md:p-8 bg-gray-100 min-h-screen">
@@ -249,5 +272,5 @@ export default function Perfil() {
         </div>
       </main>
     </div>
-  )
+  );
 }
