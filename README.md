@@ -32,11 +32,11 @@ Criar uma vitrine digital acessível e organizada.
 Apoiar a valorização e o crescimento do futebol feminino no cenário esportivo.
 
 ## Uso de API
-foi utilizada a "https://randomuser.me/api/portraits/women/44.jpg" para a simulação de imagem de usuários
+foi utilizada a "https://randomuser.me/api" para a simulação de imagem de usuários
 
 ## Nosso time
 Erick Munhoes Anciães - RM 561484
-João Pedro Mendes De Figueiredo - RM
-Patrick Canuto - RM
-João Paulo Fernandes - RM
-Ben-Hur Iung - RM
+João Pedro Mendes De Figueiredo - RM 558779
+Patrick Canuto - RM 563776
+João Paulo Fernandes - RM 563430
+Ben-Hur Iung - RM 561564
