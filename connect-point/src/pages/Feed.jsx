@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { carregarContas, removerSessao, carregarSessao } from "../utils/api"
 import FeedCard from "../components/FeedCard"
 
@@ -96,17 +96,18 @@ export default function Feed() {
       <header className="flex flex-col md:flex-row justify-between items-center bg-white p-6 rounded-3xl shadow-lg mb-8">
         <h1 className="text-3xl font-bold text-gray-800">Feed de Jogadoras</h1>
         <nav className="flex items-center space-x-4 mt-4 md:mt-0">
-          <a href="/perfil" className="text-purple-600 font-semibold text-lg hover:underline transition-colors">
-            Meu Perfil
-          </a>
-          <button
-            onClick={handleLogout}
-            className="bg-red-500 text-white font-semibold py-2 px-6 rounded-full transition-all hover:bg-red-600"
-          >
-            Sair
-          </button>
-        </nav>
-      </header>
+    <Link to="/perfil" className="text-purple-600 font-semibold text-lg hover:underline transition-colors">
+      Meu Perfil
+    </Link>
+    <button
+      onClick={handleLogout}
+      className="bg-red-500 text-white font-semibold py-2 px-6 rounded-full transition-all hover:bg-red-600"
+    >
+      Sair
+        </button>
+     </nav>
+    </header>
+
 
       <main className="bg-white p-8 rounded-3xl shadow-lg">
         <div className="text-center mb-8">

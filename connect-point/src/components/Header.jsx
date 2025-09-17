@@ -1,5 +1,4 @@
-"use client"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { removerSessao, carregarSessao } from "../utils/api"
 
 export default function Header({ titulo, mostrarSair = true }) {
@@ -18,9 +17,9 @@ export default function Header({ titulo, mostrarSair = true }) {
       <h1 className="text-3xl font-bold text-gray-800">{titulo}</h1>
       <nav className="flex items-center space-x-4 mt-4 md:mt-0">
         {usuarioLogado && (
-          <a href="/feed" className="text-purple-600 font-semibold text-lg hover:underline transition-colors">
+          <Link to="/feed" className="text-purple-600 font-semibold text-lg hover:underline transition-colors">
             Ver Feed
-          </a>
+          </Link>
         )}
         {mostrarSair && (
           <button
