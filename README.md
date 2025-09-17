@@ -36,7 +36,14 @@ foi utilizada a "https://randomuser.me/api" para a simulação de imagem de usu�
 
 ## Nosso time
 Erick Munhoes Anciães - RM 561484
+
 João Pedro Mendes De Figueiredo - RM 558779
+
 Patrick Canuto - RM 563776
+
 João Paulo Fernandes - RM 563430
+
 Ben-Hur Iung - RM 561564
+
+## Link do Site
+sprint3-three.vercel.app
