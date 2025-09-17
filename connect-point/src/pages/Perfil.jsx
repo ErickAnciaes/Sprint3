@@ -131,7 +131,7 @@ export default function Perfil() {
 
 
   return (
-    <div className="container mx-auto p-4 md:p-8 bg-gray-100 min-h-screen">
+    <div className="container mx-auto p-4 md:p-8 bg-gradient-to-t from-purple-500 to-purple-600 min-h-screen">
       <Header titulo={isOwner ? "Meu Perfil" : `Perfil de ${perfil.username}`} mostrarSair={isOwner} />
 
       <main className="flex justify-center">
