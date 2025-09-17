@@ -78,7 +78,7 @@ export default function Login() {
 
       <div className="hidden md:block w-1/2">
         <img
-          src="/assets/jogadora-santos.webp"
+          src="/assets/jogadora santos.webp"
           alt="Jogadora"
           className="object-cover object-center w-full min-h-screen"
         />
