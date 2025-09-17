@@ -1,13 +1,11 @@
-// src/pages/Login.jsx
-
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { carregarContas, salvarSessao } from '../utils/api';
-import Input from '../components/Input'; // Importa o componente de input
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { carregarContas, salvarSessao } from "../utils/api";
+import Input from "../components/Input";
 
 export default function Login() {
-  const [usuario, setUsuario] = useState('');
-  const [senha, setSenha] = useState('');
+  const [usuario, setUsuario] = useState("");
+  const [senha, setSenha] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -20,7 +18,7 @@ export default function Login() {
     if (user) {
       salvarSessao(user);
       alert("Acesso liberado!");
-      navigate('/perfil');
+      navigate("/perfil");
     } else {
       alert("Usuário ou senha inválidos.");
     }
@@ -50,7 +48,7 @@ export default function Login() {
             required
             className="border-2 border-white rounded-md h-10 bg-transparent text-white px-3 focus:outline-none focus:border-orange-500"
           />
-          
+
           <div className="flex items-start gap-2">
             <input id="remember" type="checkbox" className="accent-white h-5 w-5" />
             <label htmlFor="remember" className="text-sm">Lembrar de mim</label>
@@ -65,13 +63,22 @@ export default function Login() {
             </button>
           </div>
         </form>
-        <a href="#" className="text-white text-base no-underline hover:underline mt-4">Esqueceu a senha?</a>
+
+        <a href="#" className="text-white text-base no-underline hover:underline mt-4">
+          Esqueceu a senha?
+        </a>
+
         <div className="h-0.5 bg-gray-400 w-3/4 my-8" />
-        <a href="/cadastro" className="text-white text-lg no-underline hover:underline">Ainda não tem cadastro?</a>
+
+
+        <Link to="/cadastro" className="text-white text-lg no-underline hover:underline">
+          Ainda não tem cadastro?
+        </Link>
       </div>
+
       <div className="hidden md:block w-1/2">
         <img
-          src="public/assets/jogadora santos.webp"
+          src="/assets/jogadora-santos.webp"
           alt="Jogadora"
           className="object-cover object-center w-full min-h-screen"
         />

@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { salvarContas, carregarContas } from "../utils/api"
-import Input from "../components/Input" 
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { salvarContas, carregarContas } from "../utils/api";
+import Input from "../components/Input";
 
 export default function Cadastro() {
   const [formData, setFormData] = useState({
@@ -14,23 +14,30 @@ export default function Cadastro() {
     posicao: "",
     cidade: "",
     foto: "",
-  })
-  const navigate = useNavigate()
+  });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { id, value } = e.target
-    setFormData({ ...formData, [id]: value })
-  }
+    const { id, value } = e.target;
+    setFormData({ ...formData, [id]: value });
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const contas = carregarContas()
-    const novaConta = { ...formData, idConta: contas.length + 1 }
-    contas.unshift(novaConta)
-    salvarContas(contas)
-    alert("Cadastro completo!")
-    navigate("/login")
-  }
+    e.preventDefault();
+    const contas = carregarContas();
+
+    const novaConta = {
+      ...formData,
+      idConta: contas.length + 1,
+      foto: formData.foto || "/assets/default-profile.png",
+    };
+
+    contas.unshift(novaConta);
+    salvarContas(contas);
+    alert("Cadastro completo!");
+    navigate("/login");
+  };
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-[#272626] text-white font-montserrat">
@@ -45,14 +52,7 @@ export default function Cadastro() {
               <Input id="idade" label="Idade" type="number" value={formData.idade} onChange={handleChange} required />
             </div>
             <div className="flex flex-col w-1/2">
-              <Input
-                id="posicao"
-                label="Posição"
-                type="text"
-                value={formData.posicao}
-                onChange={handleChange}
-                required
-              />
+              <Input id="posicao" label="Posição" type="text" value={formData.posicao} onChange={handleChange} required />
             </div>
           </div>
           <div className="flex justify-between gap-4">
@@ -80,18 +80,21 @@ export default function Cadastro() {
             </label>
           </div>
         </form>
+
         <div className="h-0.5 bg-gray-400 w-3/4 my-8" />
-        <a href="/login" className="text-white text-lg no-underline hover:underline">
+
+        <Link to="/login" className="text-white text-lg no-underline hover:underline">
           Já tem uma conta? Faça seu login aqui.
-        </a>
+        </Link>
       </div>
+
       <div className="hidden md:block w-1/2 min-h-screen">
         <img
-          src="public/assets/futebol feminino-marilia-marília cruzeiro-gabi portilho-1729432441.jpg"
+          src="/assets/futebol-feminino.jpg"
           alt="Jogadora"
           className="w-full min-h-screen h-full object-cover object-center"
         />
       </div>
     </div>
-  )
+  );
 }
