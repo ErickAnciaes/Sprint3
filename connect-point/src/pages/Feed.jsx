@@ -92,7 +92,7 @@ export default function Feed() {
   }
 
   return (
-    <div className="container mx-auto p-4 md:p-8 bg-gradient-to-t from-purple-500 to-purple-600 min-h-screen">
+    <div className="container mx-auto p-4 md:p-8 b min-h-screen">
       <header className="flex flex-col md:flex-row justify-between items-center bg-white p-6 rounded-3xl shadow-lg mb-8">
         <h1 className="text-3xl font-bold text-gray-800">Feed de Jogadoras</h1>
         <nav className="flex items-center space-x-4 mt-4 md:mt-0">
@@ -109,7 +109,7 @@ export default function Feed() {
     </header>
 
 
-      <main className="bg-white p-8 rounded-3xl shadow-lg">
+      <main className="bg-white p-8 rounded-3xl shadow-lg w-full max-w-2xl mx-auto lg:max-w-4xl">
         <div className="text-center mb-8">
           <h2 className="text-4xl font-extrabold text-gray-800">Descubra Novas Jogadoras</h2>
           <p className="text-gray-600 text-lg mt-2">Conecte-se com outras atletas da sua região</p>

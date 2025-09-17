@@ -131,11 +131,11 @@ export default function Perfil() {
 
 
   return (
-    <div className="container mx-auto p-4 md:p-8 bg-gradient-to-t from-purple-500 to-purple-600 min-h-screen">
+    <div className="container mx-auto p-4 md:p-8 min-h-screen">
       <Header titulo={isOwner ? "Meu Perfil" : `Perfil de ${perfil.username}`} mostrarSair={isOwner} />
 
       <main className="flex justify-center">
-        <div className="bg-white p-8 rounded-3xl shadow-lg w-full max-w-2xl">
+        <div className="bg-white p-8 rounded-3xl shadow-lg w-full max-w-2xl lg:max-w-4xl ">
           <div className="flex flex-col items-center text-center mb-8">
             <img
               src={perfil.foto || FOTO_PADRAO}
