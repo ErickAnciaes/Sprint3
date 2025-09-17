@@ -30,7 +30,7 @@ export default function Cadastro() {
     const novaConta = {
       ...formData,
       idConta: contas.length + 1,
-      foto: formData.foto || "/usuario sem foto.jpg",
+      foto: formData.foto || "/assets/usuario sem foto.jpg",
     };
 
     contas.unshift(novaConta);
@@ -90,7 +90,7 @@ export default function Cadastro() {
 
       <div className="hidden md:block w-1/2 min-h-screen">
         <img
-          src="/jogadora cruzeiro.jpg"
+          src="/assets/jogadora cruzeiro.jpg"
           alt="Jogadora"
           className="w-full min-h-screen h-full object-cover object-center"
         />

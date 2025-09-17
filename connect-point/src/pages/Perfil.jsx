@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { carregarSessao, salvarContas, carregarContas, salvarSessao } from "../utils/api"
 import Header from "../components/Header"
 
-const FOTO_PADRAO = "/usuario sem foto.jpg"
+const FOTO_PADRAO = "/assets/usuario sem foto.jpg"
 
 export default function Perfil() {
   const [perfil, setPerfil] = useState(null)
