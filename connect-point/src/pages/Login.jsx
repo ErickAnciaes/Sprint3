@@ -76,11 +76,11 @@ export default function Login() {
         </Link>
       </div>
 
-      <div className="hidden md:block w-1/2">
+      <div className="hidden md:block w-1/2 min-h-screen">
         <img
           src="/assets/jogadora santos.webp"
           alt="Jogadora"
-          className="object-cover object-center w-full min-h-screen"
+          className="w-full min-h-screen h-full object-cover object-center"
         />
       </div>
     </div>
