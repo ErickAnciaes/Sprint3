@@ -15,9 +15,13 @@ export default function FeedCard({ jogadora }) {
 }
 
   return (
-    <div
-      className="bg-white rounded-2xl p-6 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
-    >
+   <div
+    onClick={handleClick}                 
+    role="button"
+    tabIndex={0}
+    onKeyDown={(e) => { if (e.key === 'Enter') handleClick(); }} 
+    className="bg-white rounded-2xl p-6 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
+  >
       <div className="flex items-center mb-4">
         <img
           src={jogadora.foto || FOTO_PADRAO}

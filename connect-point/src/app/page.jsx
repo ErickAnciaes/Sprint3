@@ -1,17 +1,34 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Feed from "../components/Feed"
-import Perfil from "../components/Perfil"
+// App.jsx
+import React from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import Cadastro from './pages/Cadastro';
+import Login from './pages/Login';
+import Feed from './pages/Feed';
+import Perfil from './pages/Perfil';
+import { carregarSessao } from './utils/api';
+
+const RotaProtegida = ({ children }) => {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    const usuarioLogado = carregarSessao();
+    if (!usuarioLogado) {
+      alert("Você precisa estar logado para acessar esta página!");
+      navigate('/login');
+    }
+  }, [navigate]);
+  return children;
+};
 
 export default function App() {
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-100">
-        <Routes>
-          <Route path="/" element={<Feed />} />
-          <Route path="/feed" element={<Feed />} />
-          <Route path="/perfil" element={<Perfil />} />
-        </Routes>
-      </div>
-    </Router>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/feed" element={<RotaProtegida><Feed /></RotaProtegida>} />
+        <Route path="/perfil" element={<RotaProtegida><Perfil /></RotaProtegida>} />
+        <Route path="*" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }

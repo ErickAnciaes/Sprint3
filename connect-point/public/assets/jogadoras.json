@@ -1,0 +1,44 @@
+[
+  {
+    "username": "Maria Silva",
+    "posicao": "Atacante",
+    "idade": 22,
+    "cidade": "São Paulo",
+    "foto": "https://randomuser.me/api/portraits/women/44.jpg"
+  },
+  {
+    "username": "Juliana Souza",
+    "posicao": "Zagueira",
+    "idade": 25,
+    "cidade": "Rio de Janeiro",
+    "foto": "https://randomuser.me/api/portraits/women/65.jpg"
+  },
+  {
+    "username": "Ana Costa",
+    "posicao": "Meio-campo",
+    "idade": 20,
+    "cidade": "Belo Horizonte",
+    "foto": "https://randomuser.me/api/portraits/women/12.jpg"
+  },
+  {
+    "username": "Carla Santos",
+    "posicao": "Goleira",
+    "idade": 28,
+    "cidade": "Porto Alegre",
+    "foto": "https://randomuser.me/api/portraits/women/32.jpg"
+  },
+  {
+    "username": "Fernanda Lima",
+    "posicao": "Lateral",
+    "idade": 24,
+    "cidade": "Recife",
+    "foto": "https://randomuser.me/api/portraits/women/55.jpg"
+  },
+  {
+    "username": "Patrícia Oliveira",
+    "posicao": "Atacante",
+    "idade": 26,
+    "cidade": "Salvador",
+    "foto": "https://randomuser.me/api/portraits/women/68.jpg"
+  }
+]

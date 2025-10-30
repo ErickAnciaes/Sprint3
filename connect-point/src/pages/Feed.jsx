@@ -5,55 +5,11 @@ import { useNavigate, Link } from "react-router-dom"
 import { carregarContas, removerSessao, carregarSessao } from "../utils/api"
 import FeedCard from "../components/FeedCard"
 
-const feedExemplo = [
-  {
-    username: "Maria Silva",
-    posicao: "Atacante",
-    idade: 22,
-    cidade: "São Paulo",
-    foto: "https://randomuser.me/api/portraits/women/44.jpg",
-  },
-  {
-    username: "Juliana Souza",
-    posicao: "Zagueira",
-    idade: 25,
-    cidade: "Rio de Janeiro",
-    foto: "https://randomuser.me/api/portraits/women/65.jpg",
-  },
-  {
-    username: "Ana Costa",
-    posicao: "Meio-campo",
-    idade: 20,
-    cidade: "Belo Horizonte",
-    foto: "https://randomuser.me/api/portraits/women/12.jpg",
-  },
-  {
-    username: "Carla Santos",
-    posicao: "Goleira",
-    idade: 28,
-    cidade: "Porto Alegre",
-    foto: "https://randomuser.me/api/portraits/women/32.jpg",
-  },
-  {
-    username: "Fernanda Lima",
-    posicao: "Lateral",
-    idade: 24,
-    cidade: "Recife",
-    foto: "https://randomuser.me/api/portraits/women/55.jpg",
-  },
-  {
-    username: "Patrícia Oliveira",
-    posicao: "Atacante",
-    idade: 26,
-    cidade: "Salvador",
-    foto: "https://randomuser.me/api/portraits/women/68.jpg",
-  },
-]
-
 export default function Feed() {
   const [todasJogadoras, setTodasJogadoras] = useState([])
   const [jogadorasFiltradas, setJogadorasFiltradas] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
+  const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -69,17 +25,31 @@ export default function Feed() {
       (c) => c.email !== usuarioLogado.email && c.username !== usuarioLogado.username && c.username,
     )
 
-    const todas = [...feedExemplo, ...outrasJogadoras]
-    setTodasJogadoras(todas)
-    setJogadorasFiltradas(todas)
+    async function carregarJsonLocal() {
+      try {
+        // caminho para public/data/jogadoras.json
+        const res = await fetch("/assets/jogadoras.json", { cache: "no-store" })
+        if (!res.ok) throw new Error("Resposta não OK")
+        const dadosJson = await res.json()
+
+        // Mesclar: preferir dados do JSON (externos) e acrescentar outras jogadoras do localStorage
+        const todas = [...dadosJson, ...outrasJogadoras]
+        setTodasJogadoras(todas)
+        setJogadorasFiltradas(todas)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    carregarJsonLocal()
   }, [navigate])
 
   useEffect(() => {
     const filtered = todasJogadoras.filter(
-      (jogadora) =>
-        jogadora.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        jogadora.posicao.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        jogadora.cidade.toLowerCase().includes(searchTerm.toLowerCase()),
+      (j) =>
+        j.username?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        j.posicao?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        j.cidade?.toLowerCase().includes(searchTerm.toLowerCase()),
     )
     setJogadorasFiltradas(filtered)
   }, [searchTerm, todasJogadoras])
@@ -91,23 +61,19 @@ export default function Feed() {
     }
   }
 
+  if (loading) {
+    return <div className="text-center mt-20">Carregando...</div>
+  }
+
   return (
-    <div className="container mx-auto p-4 md:p-8 b min-h-screen">
+    <div className="container mx-auto p-4 md:p-8 min-h-screen">
       <header className="flex flex-col md:flex-row justify-between items-center bg-white p-6 rounded-3xl shadow-lg mb-8">
         <h1 className="text-3xl font-bold text-gray-800">Feed de Jogadoras</h1>
         <nav className="flex items-center space-x-4 mt-4 md:mt-0">
-    <Link to="/perfil" className="text-purple-600 font-semibold text-lg hover:underline transition-colors">
-      Meu Perfil
-    </Link>
-    <button
-      onClick={handleLogout}
-      className="bg-red-500 text-white font-semibold py-2 px-6 rounded-full transition-all hover:bg-red-600"
-    >
-      Sair
-        </button>
-     </nav>
-    </header>
-
+          <Link to="/perfil" className="text-purple-600 font-semibold text-lg hover:underline transition-colors">Meu Perfil</Link>
+          <button onClick={handleLogout} className="bg-red-500 text-white font-semibold py-2 px-6 rounded-full">Sair</button>
+        </nav>
+      </header>
 
       <main className="bg-white p-8 rounded-3xl shadow-lg w-full max-w-2xl mx-auto lg:max-w-4xl">
         <div className="text-center mb-8">
@@ -134,20 +100,6 @@ export default function Feed() {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center p-12 text-center text-gray-500">
-            <svg
-              className="w-24 h-24 mb-4 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
             <h3 className="text-2xl font-bold text-gray-700">Nenhuma jogadora encontrada</h3>
             <p className="mt-2">Tente ajustar sua busca ou volte mais tarde.</p>
           </div>
