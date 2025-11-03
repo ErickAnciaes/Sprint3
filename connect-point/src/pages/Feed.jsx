@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { carregarContas, removerSessao, carregarSessao } from "../utils/api"
 import FeedCard from "../components/FeedCard"
+import DomReview from "../components/DomReview"
 
 export default function Feed() {
   const [todasJogadoras, setTodasJogadoras] = useState([])
@@ -27,12 +28,11 @@ export default function Feed() {
 
     async function carregarJsonLocal() {
       try {
-        // caminho para public/data/jogadoras.json
         const res = await fetch("/assets/jogadoras.json", { cache: "no-store" })
         if (!res.ok) throw new Error("Resposta não OK")
         const dadosJson = await res.json()
 
-        // Mesclar: preferir dados do JSON (externos) e acrescentar outras jogadoras do localStorage
+       
         const todas = [...dadosJson, ...outrasJogadoras]
         setTodasJogadoras(todas)
         setJogadorasFiltradas(todas)
@@ -81,15 +81,17 @@ export default function Feed() {
           <p className="text-gray-600 text-lg mt-2">Conecte-se com outras atletas da sua região</p>
         </div>
 
+        <DomReview jogadoras={jogadorasFiltradas} />
+
         <div className="mb-8">
           <input
-            type="text"
-            id="searchInput"
-            placeholder="Buscar por nome, posição ou cidade..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full p-4 border-2 border-gray-300 rounded-full text-lg focus:outline-none focus:border-purple-500 transition-colors"
-          />
+          type="text"
+          id="searchInput"
+          placeholder="Buscar por nome, posição ou cidade..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full p-4 border-2 border-gray-300 rounded-full text-lg focus:outline-none focus:border-purple-500 transition-colors"
+         />
         </div>
 
         {jogadorasFiltradas.length > 0 ? (
