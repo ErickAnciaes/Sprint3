@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { carregarSessao, salvarContas, carregarContas, salvarSessao } from "../utils/api"
 import Header from "../components/Header"
+import DropdownPosicoes from "../components/DropdownPosicoes"
 
 const FOTO_PADRAO = "/assets/usuario sem foto.jpg"
 
