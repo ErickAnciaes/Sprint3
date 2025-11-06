@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { salvarContas, carregarContas } from "../utils/api";
 import Input from "../components/Input";
+import DropdownPosicoes from "@/components/DropdownPosicoes";
 
 export default function Cadastro() {
   const [formData, setFormData] = useState({
@@ -52,14 +53,19 @@ export default function Cadastro() {
               <Input id="idade" label="Idade" type="number" value={formData.idade} onChange={handleChange} required />
             </div>
             <div className="flex flex-col w-1/2">
-              <Input id="posicao" label="Posição" type="text" value={formData.posicao} onChange={handleChange} required />
+              <div className="flex flex-col gap-1">
+                <label className="text-lg text-white">
+                  Posição
+                </label>
+              <DropdownPosicoes id="posicao" value={formData.posicao} onChange={handleChange} required />
+              </div>
             </div>
           </div>
           <div className="flex justify-between gap-4">
             <div className="flex flex-col w-1/2">
               <Input id="cidade" label="Cidade" type="text" value={formData.cidade} onChange={handleChange} required />
             </div>
-            <div className="flex flex-col w-1/2">
+            <div className="flex flex-col w-1/2 overflow-hidden">
               <Input id="foto" label="Foto (URL)" type="url" value={formData.foto} onChange={handleChange} />
             </div>
           </div>
