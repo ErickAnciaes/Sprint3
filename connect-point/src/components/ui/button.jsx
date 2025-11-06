@@ -19,7 +19,8 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
-        cadastro: "border-2 border-white rounded-md h-10 bg-transparent text-white text-left px-3 placeholder-gray-400 focus:outline-none focus:border-orange-500"
+        cadastro: "border-2 border-white rounded-md h-10 bg-transparent text-white text-left px-3 placeholder-gray-400 focus:outline-none focus:border-orange-500",
+        perfil: "w-full p-2 border-b-2 border-gray-400 focus:outline-none"
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

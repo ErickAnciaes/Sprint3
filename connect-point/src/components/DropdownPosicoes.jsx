@@ -4,14 +4,11 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadio
 import { Button } from "./ui/button"
 import * as React from "react"
 
-export default function DropdownPosicoes({id, value, onChange}) {
+export default function DropdownPosicoes({id, value, onChange, variant="default"}) {
 
     const handleValueChange = (newValue) => {
       const fakeEvent = {
-      target: {
-        id,
-        value: newValue,
-      },
+        target: {id, value: newValue}
     }
     onChange(fakeEvent)
   }
@@ -19,7 +16,7 @@ export default function DropdownPosicoes({id, value, onChange}) {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="cadastro" size="wmax">{value}</Button>
+          <Button variant={variant} size="wmax">{value}</Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
           <DropdownMenuLabel>Posição</DropdownMenuLabel>

@@ -196,18 +196,12 @@ export default function Perfil() {
               <span className="block font-semibold text-gray-500 text-sm">Posição</span>
               <span className="block text-lg mt-1">
                 {modoEdicao ? (
-                  <select
+                  <DropdownPosicoes
                     id="posicao"
                     value={formData.posicao || ""}
                     onChange={handleChange}
-                    className="w-full p-2 border-b-2 border-gray-400 focus:outline-none"
-                  >
-                    <option value="Goleira">Goleira</option>
-                    <option value="Zagueira">Zagueira</option>
-                    <option value="Lateral">Lateral</option>
-                    <option value="Meio-campo">Meio-campo</option>
-                    <option value="Atacante">Atacante</option>
-                  </select>
+                    variant="perfil"
+                  />
                 ) : (
                   perfil.posicao
                 )}

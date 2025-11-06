@@ -57,7 +57,7 @@ export default function Cadastro() {
                 <label className="text-lg text-white">
                   Posição
                 </label>
-              <DropdownPosicoes id="posicao" value={formData.posicao} onChange={handleChange} required />
+              <DropdownPosicoes id="posicao" value={formData.posicao} onChange={handleChange} variant="cadastro" required />
               </div>
             </div>
           </div>
