@@ -30,7 +30,7 @@ Um painel dinâmico foi implementado no Feed, exibindo:
 - Essa funcionalidade transforma o Feed em um mini dashboard, permitindo que clubes e olheiros visualizem rapidamente o perfil das jogadoras cadastradas.
 
 ## Elementos interativos
-- Foi Adicionados o uso de elementos interativos como modal e dropdown
+- Foi adicionado o uso de elementos interativos como modal e dropdown, modal foi utilizado para gerar um card se você quer confirmar as alterações para alterar alguma informação do perfil e o dropdown foi utilizado no campo de escolher as posições no cadastro e na função de editar a posição
 
 
 ---
