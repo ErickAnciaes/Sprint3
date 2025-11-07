@@ -10,27 +10,27 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-export default function ModalConfirmacao({onConfirm, variant}) {
+export default function ModalCancelamento({onCancel, variant}) {
 
   return (
     <Dialog>
       <form className="w-31 h-12">
         <DialogTrigger asChild>
-          <Button variant={variant} size="wmax">Salvar</Button>
+          <Button variant={variant} size="wmax">Cancelar</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Confirmação</DialogTitle>
+            <DialogTitle>Cancelar?</DialogTitle>
             <DialogDescription> 
-              Você tem certeza que deseja alterar os dados do seu perfil?
-              Lembre que algumas informações são públicas para outros usuários.
+              Você tem certeza que deseja cancelar? <br />
+              Todas as alterações feitas serão perdidas.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancelar</Button>
+              <Button variant="outline">Continuar editando</Button>
             </DialogClose>
-            <Button type="submit" onClick={onConfirm}>Salvar alterações</Button>
+            <Button type="submit" onClick={onCancel}>Cancelar Alterações</Button>
           </DialogFooter>
         </DialogContent>
       </form>

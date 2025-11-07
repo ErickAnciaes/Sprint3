@@ -6,6 +6,7 @@ import { carregarSessao, salvarContas, carregarContas, salvarSessao } from "../u
 import Header from "../components/Header"
 import DropdownPosicoes from "../components/DropdownPosicoes"
 import ModalConfirmacao from "@/components/ModalConfirmacao"
+import ModalCancelamento from "@/components/ModalCancelamento"
 
 const FOTO_PADRAO = "/assets/usuario sem foto.jpg"
 
@@ -117,14 +118,12 @@ export default function Perfil() {
 
     setPerfil(formData);
     setModoEdicao(false);
-    alert("Perfil atualizado com sucesso!");
   };
 
   const cancelarEdicao = () => {
     console.log("[Perfil] Cancelando edição.");
     setModoEdicao(false);
     setFormData({ ...perfil }); 
-    alert("Edição cancelada.");
   };
 
   if (!perfil) {
@@ -240,14 +239,12 @@ export default function Perfil() {
                 <>
                   <ModalConfirmacao
                     onConfirm={salvarEdicao}
-                    className="bg-green-500 text-white font-semibold py-3 px-8 rounded-full transition-all hover:bg-green-600"
+                    variant="salvarPerfil"
                   />
-                  <button
-                    onClick={cancelarEdicao}
-                    className="bg-gray-500 text-white font-semibold py-3 px-8 rounded-full transition-all hover:bg-gray-600"
-                  >
-                    Cancelar
-                  </button>
+                  <ModalCancelamento
+                    onCancel={cancelarEdicao}
+                    variant="cancelarEdicao"
+                  />
                 </>
               )}
             </div>

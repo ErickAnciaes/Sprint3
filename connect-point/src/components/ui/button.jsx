@@ -21,7 +21,8 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline justify-center",
         cadastro: "border-2 border-white rounded-md h-10 bg-transparent text-white text-left px-3 placeholder-gray-400 focus:outline-none focus:border-orange-500",
         perfil: "w-full p-2 border-b-2 border-gray-400 focus:outline-none",
-        salvarPerfil: "bg-green-500 text-white font-semibold py-3 px-8 rounded-full transition-all hover:bg-green-600 w-full h-full justify-center"
+        salvarPerfil: "bg-green-500 text-white font-semibold py-3 px-8 rounded-full transition-all hover:bg-green-600 w-full h-full justify-center",
+        cancelarEdicao: "bg-gray-500 text-white font-semibold py-3 px-8 rounded-full transition-all hover:bg-gray-600"
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
