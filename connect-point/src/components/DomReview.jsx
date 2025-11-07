@@ -52,7 +52,6 @@ export default function DomReview({ jogadoras = [] }) {
       </p>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center">
-        {/* Total geral */}
         <div className="p-3 bg-purple-100 dark:bg-purple-800 rounded-xl">
           <p className="text-3xl font-extrabold text-purple-700 dark:text-purple-200">
             {total}
@@ -60,7 +59,6 @@ export default function DomReview({ jogadoras = [] }) {
           <p className="text-sm text-gray-700 dark:text-gray-300">Total</p>
         </div>
 
-        {/* Exibição das posições no plural */}
         {Object.entries(porPosicao).map(([pos, count]) => {
           const nomePlural = pluralizar(pos)
           return (
