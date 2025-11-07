@@ -80,7 +80,8 @@ Foi utilizada a API **https://randomuser.me/api** exclusivamente para simulaçã
 
 ---
 
-## 🔗 Link do Site (Deploy)
+## Link do Site
 
-➡️ **https://sprint3-three.vercel.app**
+sprint3-three.vercel.app
+
 
