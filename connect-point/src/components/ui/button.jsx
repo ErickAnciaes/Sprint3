@@ -9,18 +9,19 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-primary text-primary-foreground hover:bg-primary/90 justify-center",
         destructive:
-          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+          "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60 justify-center",
         outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 justify-center",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80 justify-center",
         ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
+          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 justify-center",
+        link: "text-primary underline-offset-4 hover:underline justify-center",
         cadastro: "border-2 border-white rounded-md h-10 bg-transparent text-white text-left px-3 placeholder-gray-400 focus:outline-none focus:border-orange-500",
-        perfil: "w-full p-2 border-b-2 border-gray-400 focus:outline-none"
+        perfil: "w-full p-2 border-b-2 border-gray-400 focus:outline-none",
+        salvarPerfil: "bg-green-500 text-white font-semibold py-3 px-8 rounded-full transition-all hover:bg-green-600 w-full h-full justify-center"
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
@@ -29,7 +30,7 @@ const buttonVariants = cva(
         icon: "size-9",
         "icon-sm": "size-8",
         "icon-lg": "size-10",
-        wmax: "w-full",
+        wmax: "w-full full",
       },
     },
     defaultVariants: {

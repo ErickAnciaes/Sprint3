@@ -4,7 +4,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadio
 import { Button } from "./ui/button"
 import * as React from "react"
 
-export default function DropdownPosicoes({id, value, onChange, variant="default"}) {
+export default function DropdownPosicoes({id, value, onChange, variant}) {
 
     const handleValueChange = (newValue) => {
       const fakeEvent = {

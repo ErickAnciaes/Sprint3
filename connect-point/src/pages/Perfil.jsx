@@ -1,10 +1,11 @@
-"use client" // Se você está usando Next.js App Router, mantenha esta linha. Caso contrário, pode remover.
+"use client"
 
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { carregarSessao, salvarContas, carregarContas, salvarSessao } from "../utils/api"
 import Header from "../components/Header"
 import DropdownPosicoes from "../components/DropdownPosicoes"
+import ModalConfirmacao from "@/components/ModalConfirmacao"
 
 const FOTO_PADRAO = "/assets/usuario sem foto.jpg"
 
@@ -237,12 +238,10 @@ export default function Perfil() {
               )}
               {modoEdicao && (
                 <>
-                  <button
-                    onClick={salvarEdicao}
+                  <ModalConfirmacao
+                    onConfirm={salvarEdicao}
                     className="bg-green-500 text-white font-semibold py-3 px-8 rounded-full transition-all hover:bg-green-600"
-                  >
-                    Salvar
-                  </button>
+                  />
                   <button
                     onClick={cancelarEdicao}
                     className="bg-gray-500 text-white font-semibold py-3 px-8 rounded-full transition-all hover:bg-gray-600"
