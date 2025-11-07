@@ -24,7 +24,7 @@ Este projeto tem como finalidade criar uma plataforma para que jogadoras de fute
 Um painel dinâmico foi implementado no Feed, exibindo:
 
 - Número total de jogadoras cadastradas
-- Criado a parir da revisão do DOM
+- Criado a partir da revisão do DOM
 - Contagem de jogadoras **por posição**
   - Exemplo: 2 Atacantes, 1 Goleira, 3 Zagueiras…
 - Essa funcionalidade transforma o Feed em um mini dashboard, permitindo que clubes e olheiros visualizem rapidamente o perfil das jogadoras cadastradas.
