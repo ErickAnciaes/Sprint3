@@ -35,14 +35,14 @@ Um painel dinâmico foi implementado no Feed, exibindo:
 
 ---
 
-## 👥 Público-Alvo
+## Público-Alvo
 
 - Jogadoras de futebol feminino que desejam visibilidade.
 - Clubes, treinadores e olheiros que buscam novas atletas.
 
 ---
 
-## 🚀 Impacto Esperado
+## Impacto Esperado
 
 - Facilitar a descoberta de talentos no futebol feminino.
 - Criar uma **vitrine digital organizada e acessível**.
@@ -50,7 +50,7 @@ Um painel dinâmico foi implementado no Feed, exibindo:
 
 ---
 
-## 🛠️ Tecnologias usadas
+## Tecnologias usadas
 
 | Tecnologia | Uso |
 |------------|-----|
@@ -62,13 +62,13 @@ Um painel dinâmico foi implementado no Feed, exibindo:
 
 ---
 
-## 🌐 Uso de API
+## Uso de API
 
 Foi utilizada a API **https://randomuser.me/api** exclusivamente para simulação de fotos de perfil quando a jogadora não envia uma imagem, agora manipulada com JSON local usando fetch
 
 ---
 
-## 🧑‍💻 Nosso time
+## Nosso time
 
 | Nome | RM |
 |------|----|
